@@ -29,3 +29,39 @@ example
 
 1 directory, 1 file
 ```
+---
+# Go working on data model
+- file: main.go
+```go
+package main
+
+import (
+	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/example/simple"
+	"log"
+)
+
+func main() {
+	doSimple()
+}
+
+func doSimple() {
+	sm := simple.SimpleMessage{
+		Id:         123,
+		IsSimple:   true,
+		Name:       "My Simple Message",
+		SampleList: []int32{1, 23, 45, 6},
+	}
+	log.Println(sm)
+}
+
+```
+- initialize Go module and run
+```shell
+> go mod init
+> go mod tidy
+> go run main.go
+```
+- output:
+```shell
+{{{} [] [] <nil>} 0 [] 123 true My Simple Message [1 23 45 6]}
+```
