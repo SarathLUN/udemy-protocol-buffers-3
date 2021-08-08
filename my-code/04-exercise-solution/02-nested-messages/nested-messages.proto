@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message Building {
+    string building_name = 1;
+    int32 building_number = 2;
+    // define type street
+    message Street {
+        string street_name = 1;
+        // define city
+        message City {
+            string city_name = 1;
+            string zip_code = 2;
+            string county_name = 3;
+        }
+        // create field city inside Street
+        City city = 2;
+    }
+    // create field Street inside Building
+    Street street = 3;
+}
