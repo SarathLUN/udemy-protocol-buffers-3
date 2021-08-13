@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/example/simple"
+	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/01/example/simple"
 	"log"
 )
 
