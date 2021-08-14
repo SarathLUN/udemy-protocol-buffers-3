@@ -1,6 +1,7 @@
 package main
 
 import (
+	enumpb "github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/enum"
 	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/simple"
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
@@ -10,9 +11,28 @@ import (
 
 func main() {
 
-	sm := doSimple()
+	//sm := doSimple()
+	// working with file
 	//readAndWriteDemo(sm)
-	jsonDemo(sm)
+
+	// working with json
+	//jsonDemo(sm)
+
+	// working with enum
+	doEnum()
+
+}
+
+func doEnum() {
+	em := enumpb.EnumMessage{
+		Id:           44,
+		DayOfTheWeek: enumpb.DayOfTheWeek_MONDAY,
+	}
+	log.Println(em)
+
+	// re-assign value
+	em.DayOfTheWeek = enumpb.DayOfTheWeek_SUNDAY
+	log.Println(em)
 
 }
 
