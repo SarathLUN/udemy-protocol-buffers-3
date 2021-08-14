@@ -2,14 +2,34 @@ package main
 
 import (
 	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/simple"
+	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"log"
 )
 
 func main() {
-	// write to file
+
 	sm := doSimple()
+	readAndWriteDemo(sm)
+
+	// convert to JSON
+	smAsString := toJSON(sm)
+	log.Println(smAsString)
+}
+
+func toJSON(pb proto.Message) string {
+	marshaller := jsonpb.Marshaler{}
+	out, err := marshaller.MarshalToString(pb)
+	if err != nil {
+		log.Fatalln("Can't convert to JSON:", err)
+		return ""
+	}
+	return out
+}
+
+func readAndWriteDemo(sm proto.Message) {
+	// write to file
 	err := writeToFile("./my-code/06-golang/02/out/simple.bin", sm)
 	if err != nil {
 		log.Panic(err)
