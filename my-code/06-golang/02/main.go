@@ -8,12 +8,33 @@ import (
 )
 
 func main() {
+	// write to file
 	sm := doSimple()
 	err := writeToFile("./my-code/06-golang/02/out/simple.bin", sm)
 	if err != nil {
 		log.Panic(err)
 	}
-	//readFromFile()
+
+	// read from file
+	// create empty struct
+	sm2 := &simplepb.SimpleMessage{}
+	err = readFromFile("./my-code/06-golang/02/out/simple.bin", sm2)
+	if err != nil {
+		log.Panic(err)
+	}
+	log.Println("Read the content:", sm2)
+}
+
+func readFromFile(fname string, pb proto.Message) error {
+	in, err := ioutil.ReadFile(fname)
+	if err != nil {
+		panic(err)
+	}
+	err = proto.Unmarshal(in, pb)
+	if err != nil {
+		panic(err)
+	}
+	return nil
 }
 
 func writeToFile(fname string, pb proto.Message) error {
