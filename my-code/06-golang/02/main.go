@@ -11,11 +11,19 @@ import (
 func main() {
 
 	sm := doSimple()
-	readAndWriteDemo(sm)
+	//readAndWriteDemo(sm)
+	jsonDemo(sm)
 
+}
+
+func jsonDemo(sm proto.Message) {
 	// convert to JSON
 	smAsString := toJSON(sm)
 	log.Println(smAsString)
+
+	sm2 := &simplepb.SimpleMessage{}
+	fromJSON(smAsString, sm2)
+	log.Println(sm2)
 }
 
 func toJSON(pb proto.Message) string {
@@ -26,6 +34,13 @@ func toJSON(pb proto.Message) string {
 		return ""
 	}
 	return out
+}
+
+func fromJSON(in string, pb proto.Message) {
+	err := jsonpb.UnmarshalString(in, pb)
+	if err != nil {
+		log.Panic(err)
+	}
 }
 
 func readAndWriteDemo(sm proto.Message) {
