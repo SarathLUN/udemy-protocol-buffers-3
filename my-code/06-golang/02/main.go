@@ -1,6 +1,7 @@
 package main
 
 import (
+	complexpb "github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/complex"
 	enumpb "github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/enum"
 	"github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02/src/simple"
 	"github.com/golang/protobuf/jsonpb"
@@ -19,8 +20,31 @@ func main() {
 	//jsonDemo(sm)
 
 	// working with enum
-	doEnum()
+	//doEnum()
 
+	// working on complex
+	doComplex()
+
+}
+
+func doComplex() {
+	cm := complexpb.ComplexMessage{
+		OneDummy: &complexpb.DummyMessage{
+			Id:   1,
+			Name: "First message",
+		},
+		MultipleDummy: []*complexpb.DummyMessage{
+			&complexpb.DummyMessage{
+				Id:   2,
+				Name: "second message",
+			},
+			&complexpb.DummyMessage{
+				Id:   3,
+				Name: "third message",
+			},
+		},
+	}
+	log.Println(cm)
 }
 
 func doEnum() {

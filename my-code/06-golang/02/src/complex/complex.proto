@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package complexpb;
+
+// syntax for go_package = output_package_path ; package_name
+option go_package="./complex;complexpb";
+
+message ComplexMessage {
+  DummyMessage one_dummy = 2;
+  repeated DummyMessage multiple_dummy = 3;
+}
+
+message DummyMessage {
+  int32 id = 1;
+  string name = 2;
+}
+
+// cd /Users/sarath/go/src/github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02
+// run: protoc -I src --go_out=src/ src/complex/complex.proto

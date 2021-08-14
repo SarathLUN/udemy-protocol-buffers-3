@@ -9,3 +9,6 @@ message SimpleMessage{
     string name=3;
     repeated int32 sample_list=4;
 }
+
+// cd /Users/sarath/go/src/github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02
+// run: protoc -I src --go_out=src/ src/simple/simple.proto

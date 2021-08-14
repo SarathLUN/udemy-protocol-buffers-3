@@ -18,3 +18,6 @@ enum DayOfTheWeek {
   SATURDAY = 6;
   SUNDAY = 7;
 }
+
+// cd /Users/sarath/go/src/github.com/SarathLUN/udemy-protocol-buffers-3/my-code/06-golang/02
+// run: protoc -I src --go_out=src/ src/enum/enum_example.proto
