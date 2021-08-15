@@ -5,18 +5,18 @@
 - when you first declare a message in your protocol, you have a defined sets of requirements
 - but as time go on, your business will evolve, and you have a difference set of requirements
 - some fields may change, some fields may be added and other removed.
-- now, also with time, many applications may read your messages using Protocol Buffers ans you may not have the time to upgrade them
+- now, also with time, many applications may read your messages using Protocol Buffers and you may not have the time to upgrade them
 - for example, today we're asking for the First_Name and Last_Name of our customer, and that's our v1 schema, but tomorrow we may ask for their phone number. that would be our v2 of our schema
 - so we need to be able to evolve the source data without breaking the other applications reading it
 - thankfully, Protocol Buffers helps us tremendously with that as we'll see in th this section
 - scenario 1: write data with new `.proto` -> read data with old `.proto`, this called **Forward** compatible change
 - scenario 2: write data with old `.proto` -> read data with new `.proto`, this called **Backward** compatible change
-- while protobuff provided us out of the box the both of forward and backward compatible which is called **FULL** compatible change
+- while protobuf provided us out of the box the both of forward and backward compatible which is called **FULL** compatible change
 
 ---
 
 # Updating Protocol Rules (from the documentation)
-1. Don't change the numberic tags for any existing fields.
+1. Don't change the numeric tags for any existing fields.
 2. You can add new fields, and old code will just ignore them.
 3. likewise, if the old / new code reads unknown data, the default will take place
 4. fields can be removed, as long as the tag number is not used again in your updated message type. you may want to rename the field instead, perhaps adding the prefix "OBSOLETE_", or make the tag reserved, so that future users of your `.proto` can't accidentally reuse the number.
@@ -27,18 +27,20 @@
 # Adding fields
 - let add a field to our schema (new tag number)
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
 }
 ```
 change to:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
     string first_name = 2;
 }
 ```
-- if that field send to old code, the old code will not know what that tag number corresponse to, and the field will be ignore or dropped.
+- if that field sends to old code, the old code will not know what that tag number corresponds to, and the field will be ignored or dropped.
 - oppositely, if we read the old data with new code, the new field will not be found, and the default value will be assumed (empty string)
 - ## The default values should always be interpreted with care.
 
@@ -48,6 +50,7 @@ message MyMessage{
 - let's rename a field in our schema
 from:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
     string first_name = 2;
@@ -55,6 +58,7 @@ message MyMessage{
 ```
 to:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
     string person_first_name = 2;
@@ -69,6 +73,7 @@ message MyMessage{
 - let's remove a field in our schema
 from:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
     string first_name = 2;
@@ -76,6 +81,7 @@ message MyMessage{
 ```
 to:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
 }
@@ -86,16 +92,18 @@ message MyMessage{
 - ## when removing a field, you should always reserve the tage and the name
 from:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     int32 id = 1;
-    string first_name = 2
+    string first_name = 2;
 }
 ```
 to:
 ```protobuf
+syntax = "proto3";
 message MyMessage{
     reserved 2;
-    reserved "first_name";
+    reserved first_name;
     int32 id = 1;
 }
 ```
@@ -110,9 +118,10 @@ message MyMessage{
 - you can reserve TAGS and FIELD NAMES
 - you can't mix TAGS and FIELD NAMES in the same `reserved` statement
 ```protobuf
+syntax = "proto3";
 message Foo{
     reserved 2,15, 9 to 11;
-    reserved "foo", "bar";
+    reserved foo, bar;
 }
 ```
 - we reserve TAGS to prevent new fields from re-using tags (which would break old code at runtime)
