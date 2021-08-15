@@ -9,9 +9,9 @@
 - for example, today we're asking for the First_Name and Last_Name of our customer, and that's our v1 schema, but tomorrow we may ask for their phone number. that would be our v2 of our schema
 - so we need to be able to evolve the source data without breaking the other applications reading it
 - thankfully, Protocol Buffers helps us tremendously with that as we'll see in th this section
-- scenario 1: write data with new `.proto` -> read data with old `.proto`, this called **Forward** compatible change
-- scenario 2: write data with old `.proto` -> read data with new `.proto`, this called **Backward** compatible change
-- while protobuf provided us out of the box the both of forward and backward compatible which is called **FULL** compatible change
+- scenario 1: write data with new `.proto` => read data with old `.proto`, this called <u>**_Forward_**</u> compatible change
+- scenario 2: write data with old `.proto` => read data with new `.proto`, this called <u>**_Backward_**</u> compatible change
+- while protobuf provided us out of the box the both of forward and backward compatible which is called <u>**_FULL_**</u> compatible change
 
 ---
 
