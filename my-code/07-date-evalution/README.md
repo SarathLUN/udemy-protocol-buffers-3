@@ -1,5 +1,5 @@
 # Protobuf Data Evolution
-`Evolve your .proto files in a safe way.`
+>Evolve your .proto files in a safe way.
 
 1. Why do we need to update the protocols?
 - when you first declare a message in your protocol, you have a defined sets of requirements
