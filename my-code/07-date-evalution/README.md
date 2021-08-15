@@ -128,8 +128,8 @@ message Foo{
 - but they are dangerous, because...
 - you cannot differentiate from a missing field or if a value equal to the default was set
 - now, what can we do about it?
-- make sure the default value doesn't have meaning for your business
-- deal with default value in your code if needed (with if statements)
+  - make sure the default value doesn't have meaning for your business
+  - deal with default value in your code if needed (with if statements)
 
 ---
 
