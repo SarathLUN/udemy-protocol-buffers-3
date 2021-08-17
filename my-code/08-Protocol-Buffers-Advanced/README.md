@@ -131,3 +131,9 @@ service SearchService {
 - the main framework is gRPC, but you may find others in the web
 - the advantage of services and RPC is that you can call Server API from any client seamlessly
 - gRPC for example is used by Google, Netflix, CoreOS (etcd), Google Cloud API, and is gaining popularity fast
+
+---
+
+# Protocol Buffers Encoding
+- the magic of protocol buffers is to have same serialization and deserialization for all the languages
+- serialization mean transform an object into bytes and deserialization mean taking bytes and getting an object out of it
